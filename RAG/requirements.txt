@@ -1,0 +1,41 @@
+# flask==3.0.0
+# flask-cors==4.0.0
+# python-dotenv==1.0.0
+# langchain-openai==0.1.8
+# langchain-core==0.2.10
+# langchain-huggingface==0.0.3
+# langchain-chroma==0.1.2
+# chromadb==0.4.15
+# sentence-transformers>=2.6.0
+# openai==1.35.0
+# google-cloud-vision==3.7.0
+# streamlit==1.32.0
+
+
+# LangChain packages
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-core>=0.1.10
+langchain-community>=0.0.20
+langchain-chroma>=0.1.0
+langchain-huggingface>=0.0.1
+
+# Vector database
+chromadb>=0.4.22
+
+# Embeddings and transformers
+sentence-transformers>=2.2.2
+transformers>=4.36.0
+torch>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Google Cloud APIs
+google-cloud-vision==3.7.0
+google-cloud-speech>=2.20.0
+
+# Optional but recommended
+numpy>=1.24.0

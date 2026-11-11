@@ -1,0 +1,7 @@
+# Gradio and `spaces` are pre-installed by Hugging Face (see sdk_version in README.md).
+torch
+transformers>=4.56.0
+accelerate>=0.34.0
+sentence-transformers>=3.0.0
+# The DB in RAG/chroma_db was written by chromadb 1.x — older versions can't read it.
+chromadb>=1.1.0
