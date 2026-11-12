@@ -25,8 +25,8 @@ import torch
 from sentence_transformers import SentenceTransformer
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 
-# ZeroGPU decorator. On Hugging Face Spaces `spaces` is pre-installed.
-# When running locally without spaces, fallback to a no-op decorator.
+# ZeroGPU decorator. The `spaces` package is installed from requirements.txt.
+# When running locally without it, fall back to a no-op decorator.
 try:
     import spaces
 except ImportError:
@@ -80,15 +80,15 @@ collection = chroma_client.get_collection(COLLECTION)
 print(f"Collection '{COLLECTION}' has {collection.count()} chunks.")
 
 print(f"Loading LLM {MODEL_ID} ...")
-device = "cuda" if torch.cuda.is_available() else "cpu"
+load_device = "cuda" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_ID,
-    dtype=torch.float16 if device == "cuda" else torch.float32,
+    dtype=torch.float16 if load_device == "cuda" else torch.float32,
 )
-model.to(device)
+model.to(load_device)
 model.eval()
-print(f"Model {MODEL_ID} loaded successfully on {device}.")
+print(f"Model {MODEL_ID} loaded successfully on {load_device}.")
 
 
 # ---------------------------------------------------------------------------
@@ -179,7 +179,8 @@ def generate_stream(messages):
     text = tokenizer.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True
     )
-    inputs = tokenizer([text], return_tensors="pt").to(model.device)
+    device = next(model.parameters()).device
+    inputs = tokenizer([text], return_tensors="pt").to(device)
     streamer = TextIteratorStreamer(
         tokenizer, skip_prompt=True, skip_special_tokens=True, timeout=120
     )
@@ -265,7 +266,7 @@ with gr.Blocks(title="Khmer Grade 12 Tutor API") as demo:
         api_name="chat",
     )
 
-demo.queue(default_concurrency_limit=4)
+demo.queue(default_concurrency_limit=1)
 
 if __name__ == "__main__":
     demo.launch()

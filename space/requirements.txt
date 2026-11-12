@@ -1,4 +1,5 @@
-# Gradio and `spaces` are pre-installed by Hugging Face (see sdk_version in README.md).
+# ZeroGPU decorator package.
+spaces
 torch
 transformers>=4.56.0
 accelerate>=0.34.0
