@@ -33,15 +33,25 @@ wheels/
 # Jupyter Notebook
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+RAG/*.sqlite3-journal
+
+# Local model / hub caches
+.hf_cache/
+.cache/
+.gradio/
 
 # Node / Frontend
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 frontend/dist/
 frontend/.env
 frontend/.env.local
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
 
 # OS / Editor
 .DS_Store

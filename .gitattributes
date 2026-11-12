@@ -1,0 +1,19 @@
+# Normalise text files on commit, keep them working on Windows checkouts.
+* text=auto
+
+*.sh   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+
+# Binary assets — never diff, merge or convert these.
+*.bin             binary
+*.sqlite3         binary
+*.sqlite3-journal binary
+*.png             binary
+*.jpg             binary
+*.jpeg            binary
+*.gif             binary
+*.ico             binary
+*.woff            binary
+*.woff2           binary
+*.pdf             binary
