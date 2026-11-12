@@ -21,21 +21,10 @@ from threading import Thread
 
 import chromadb
 import gradio as gr
+import spaces
 import torch
 from sentence_transformers import SentenceTransformer
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
-
-# ZeroGPU decorator. The `spaces` package is installed from requirements.txt.
-# When running locally without it, fall back to a no-op decorator.
-try:
-    import spaces
-except ImportError:
-    class _MockSpaces:
-        def GPU(self, *args, **kwargs):
-            def decorator(fn):
-                return fn
-            return decorator
-    spaces = _MockSpaces()
 
 # ---------------------------------------------------------------------------
 # Config
